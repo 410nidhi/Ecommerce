@@ -6,7 +6,7 @@ const connectDatabase =() => {
     useNewUrlParser: true,
     useUnifiedTopology: true
   }
-).then(data=>{console.log("Connected Database!")}).catch(err=>{console.log("Not Connected!")})
+).then(data=>{console.log("Connected Database!")})
 }
 
 module.exports = connectDatabase;
