@@ -3,30 +3,32 @@ import {CgMouse} from "react-icons/cg"
 import "./Home.css"
 import Product from "./Product"
 import MetaData from '../layout/MetaData'
-import {getProduct} from "../../actions/productAction"
+import {clearErrors, getProduct} from "../../actions/productAction"
 import {useSelector, useDispatch} from "react-redux"
-
-// Temporarily creating an object product
-const product = {
-  name:"T-shirt",
-  images:[{url:"https://i.ibb.co/DRST11n/1.webp"}],
-  price:"24545",
-  _id:"ndbfkh"
-}
+import Loader from '../layout/loader/Loader'
+import {useAlert} from "react-alert"
 
 const Home = () => {
+  const alert = useAlert()
   const dispatch = useDispatch()
   const {loading, error, products, productCount} = useSelector(
     (state)=> state.products
   )
 
   useEffect(()=>{
+    if(error){
+      alert.error(error)
+      dispatch (clearErrors())
+    }
     dispatch(getProduct())
-  },[dispatch, getProduct])
+  },[dispatch, error, alert])
 
   return (
     // <Fragment></Fragment> = <></>
     <Fragment>
+      {loading ? (<Loader/>) :
+      (
+      <Fragment>
       <MetaData title="ECOMMERCE" />
         <div className= "banner">
             <p>Welcome to ECOMMERCE</p>
@@ -43,6 +45,8 @@ const Home = () => {
             <Product product = {product}/>
           )}
         </div>
+      </Fragment>
+      )}
     </Fragment>
   )
 }
