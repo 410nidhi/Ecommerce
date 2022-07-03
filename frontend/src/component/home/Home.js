@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import {CgMouse} from "react-icons/cg"
 import "./Home.css"
-import Product from "./Product"
+import ProductCard from "./ProductCard"
 import MetaData from '../layout/MetaData'
 import {clearErrors, getProduct} from "../../actions/productAction"
 import {useSelector, useDispatch} from "react-redux"
@@ -11,7 +11,7 @@ import {useAlert} from "react-alert"
 const Home = () => {
   const alert = useAlert()
   const dispatch = useDispatch()
-  const {loading, error, products, productCount} = useSelector(
+  const {loading, error, products} = useSelector(
     (state)=> state.products
   )
 
@@ -42,7 +42,7 @@ const Home = () => {
         <h2 className="homeHeading">Featured Products</h2>
         <div className="container" id="container">
           {products && products.map((product) => 
-            <Product product = {product}/>
+            <ProductCard product = {product}/>
           )}
         </div>
       </Fragment>

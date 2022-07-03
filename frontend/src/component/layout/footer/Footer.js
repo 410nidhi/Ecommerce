@@ -6,7 +6,7 @@ const Footer = () => {
         <footer id="footer">
             <div className="leftFooter">
                 <h4>DOWNLOAD OUR APP</h4>
-                <p>Download App for Android annd IOS mobile phone</p>
+                <p>Download App for Android and IOS mobile phone</p>
                 <img src="http://assets.stickpng.com/images/5a902dbf7f96951c82922875.png" alt=""/>
                 <img src="http://assets.stickpng.com/thumbs/5a902db97f96951c82922874.png" alt=""/>
             </div>

@@ -6,6 +6,7 @@ import React from "react";
 import WebFont from "webfontloader";
 import Home from "./component/home/Home.js"
 import ProductDetails from "./component/product/ProductDetails"
+import Products from "./component/product/Products";
 
 function App() {
 
@@ -24,6 +25,8 @@ function App() {
       <Routes>
         <Route exact="true" path="/" element={<Home/>} />
         <Route exact="true" path="/product/:id" element={<ProductDetails/>} />
+        <Route exact="true" path="/products" element={<Products/>} />
+        <Route path="/products/:keyword" element={<Products/>} />
       </Routes>
 
       <Footer/>

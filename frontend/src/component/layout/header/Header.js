@@ -1,7 +1,7 @@
 import React from "react";
 import { ReactNavbar } from "overlay-navbar";
 import logo from "../../../Logo/logo.png"
-import SearchIconElement from "../../../Logo/search-icon.png"
+// import SearchIconElement from "../../../Logo/search-icon.png"
 
 const options = {
     burgerColorHover: "#eb4034",
@@ -28,8 +28,7 @@ const options = {
     link1Margin: "1vmax",
     profileIconUrl: "/login",
     profileIconColor: "rgba(35, 35, 35,0.8)",
-    // searchIcon:true,
-    SearchIconElement,
+    SearchIconElement:"Search",
     searchIconColor: "rgba(35, 35, 35,0.8)",
     cartIconColor: "rgba(35, 35, 35,0.8)",
     profileIconColorHover: "#eb4034",
