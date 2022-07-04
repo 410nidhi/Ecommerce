@@ -10,6 +10,7 @@ import {Slider} from '@mui/material'
 import { Typography } from '@mui/material'
 import {useAlert} from 'react-alert'
 import MetaData from '../layout/MetaData'
+import Search from '../layout/search/Search'
 
 const categories=[
     "Laptop", "Footwear", "Bottom", "Tops", "Attire", "Camera", "SmartPhones"
@@ -49,6 +50,7 @@ const Products = () => {
         {loading ? <Loader/> : (
             <Fragment>
                 <MetaData title="Products -- ECOMMERCE"/>
+                <Search/>
                 <h2 className='productsHeading'>Products</h2>
                 <div className="products">
                     {products && products.map((product)=>(<ProductCard key={product._id} product={product}/>))}
