@@ -1,5 +1,6 @@
 import axios from "axios"
-import {ALL_PRODUCT_REQUEST, ALL_PRODUCT_SUCCESS, ALL_PRODUCT_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, CLEAR_ERRORS} from "../constants/productConstants"
+import {ALL_PRODUCT_REQUEST, ALL_PRODUCT_SUCCESS, ALL_PRODUCT_FAIL, PRODUCT_DETAILS_REQUEST, 
+    PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, CLEAR_ERRORS} from "../constants/productConstants"
 
 export const getProduct = (keyword="", currentPage=1, price=[0, 25000], category, ratings=0)=> async (dispatch)=>{
     try{
