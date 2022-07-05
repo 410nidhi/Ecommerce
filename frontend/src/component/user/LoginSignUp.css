@@ -100,7 +100,8 @@
 
 #registerImage > img {
   width: 3vmax;
-  border-radius: 100%;
+  clip-path: circle();
+  margin: 0px 3px;
 }
 #registerImage > input {
   display: flex;
@@ -197,7 +198,8 @@
 
   #registerImage > img {
     width: 8vmax;
-    border-radius: 100%;
+    clip-path: circle();
+    margin: 0 3px;
   }
 
   #registerImage > input::file-selector-button {

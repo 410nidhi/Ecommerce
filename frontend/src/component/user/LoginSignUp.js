@@ -6,7 +6,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import FaceIcon from '@mui/icons-material/Face';
 import {useSelector, useDispatch} from "react-redux"
-import { login, clearErrors } from '../../actions/userAction';
+import { login, clearErrors, register } from '../../actions/userAction';
 import {useAlert} from "react-alert"
 
 const LoginSignUp = (props) => {
@@ -30,7 +30,7 @@ const LoginSignUp = (props) => {
     })
     const {name, email, password} = user
 
-    const [avatar, setAvatar] = useState()
+    const [avatar, setAvatar] = useState("https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=")
     const [avatarPreview, setAvatarPreview] = useState("https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=")
 
     const loginSubmit = (e)=>{
@@ -48,7 +48,7 @@ const LoginSignUp = (props) => {
         myForm.set("password",password)
         myForm.set("avatar",avatar)
 
-        console.log("SignUp Form Submited")
+        dispatch(register(myForm))
     }
 
     const registerDataChange = (e)=>{

@@ -1,5 +1,6 @@
 const app = require("./app")
 const mongoose=require('mongoose');
+const cloudinary = require("cloudinary")
 const connectDatabase = require("./config/database");
 
 // Handling Uncaught Execptions
@@ -12,6 +13,16 @@ process.on("uncaughtException", err=>{
 
 // Connecting to Database
 connectDatabase();
+
+const CLOUD_NAME = "dr3lqouuy"
+const CLOUD_API_KEY = "725735348775534"
+const CLOUD_API_SECRET = "sjrsAxhwTPtHwP3nPQjAejJnDsg"
+cloudinary.config({
+    cloud_name:CLOUD_NAME,
+    api_key: CLOUD_API_KEY,
+    api_secret:CLOUD_API_SECRET,
+    secure: true
+})
 
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
