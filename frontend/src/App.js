@@ -12,6 +12,7 @@ import store from "./store"
 import { loadUser } from "./actions/userAction";
 import UserOptions from "./component/layout/header/UserOptions";
 import { useSelector } from "react-redux";
+import Profile from "./component/user/Profile";
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
         <Route path="/products/:keyword" element={<Products/>} />
         <Route exact="true" path="/login" element={<LoginSignUp/>} />
         {/* <Route exact="true" path="/password/forgot" element={<Home/>} /> */}
+        <Route exact="true" path="/account" element ={<Profile/>} />
       </Routes>
 
       <Footer/>
