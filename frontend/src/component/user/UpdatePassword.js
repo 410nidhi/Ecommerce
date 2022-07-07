@@ -58,9 +58,9 @@ const UpdatePassword = (props) => {
             <MetaData title="Change Password"/>
             <div className='updatePasswordContainer'>
                 <div className='updatePasswordBox'>
-                    <h2 className='updatePasswordHeading'>Update Profile</h2>
-                    <form className='updatePasswordForm' encType="multipart/form-data" onSubmit={updatePasswordSubmit}>
-                        <div className="signUpPassword">
+                    <h2 className='updatePasswordHeading'>Change Password</h2>
+                    <form className='updatePasswordForm' onSubmit={updatePasswordSubmit}>
+                        <div>
                             <VpnKeyIcon />
                             <input
                             type="password"
@@ -72,7 +72,7 @@ const UpdatePassword = (props) => {
                             />
                         </div>
 
-                        <div className="signUpPassword">
+                        <div>
                             <LockOpenIcon />
                             <input
                             type="password"
@@ -84,7 +84,7 @@ const UpdatePassword = (props) => {
                             />
                         </div>
 
-                        <div className="signUpPassword">
+                        <div>
                             <LockIcon />
                             <input
                             type="password"
