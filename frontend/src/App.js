@@ -13,6 +13,8 @@ import { loadUser } from "./actions/userAction";
 import UserOptions from "./component/layout/header/UserOptions";
 import { useSelector } from "react-redux";
 import Profile from "./component/user/Profile";
+import UpdateProfile from "./component/user/UpdateProfile";
+import UpdatePassword from "./component/user/UpdatePassword";
 
 function App() {
 
@@ -41,6 +43,8 @@ function App() {
         <Route exact="true" path="/login" element={<LoginSignUp/>} />
         {/* <Route exact="true" path="/password/forgot" element={<Home/>} /> */}
         <Route exact="true" path="/account" element ={<Profile/>} />
+        <Route exact="true" path="/me/update" element ={<UpdateProfile/>} />
+        <Route exact="true" path="/password/update" element ={<UpdatePassword/>} />
       </Routes>
 
       <Footer/>

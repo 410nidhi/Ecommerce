@@ -26,7 +26,7 @@
 }
 
 .profileContainer > div:first-child > img {
-  width: 30vmax;
+  width: 200px;
   clip-path: circle();
   transition: all 0.5s;
 }

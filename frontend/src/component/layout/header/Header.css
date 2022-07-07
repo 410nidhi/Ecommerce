@@ -5,6 +5,7 @@
 }
 
 .speedDialIcon {
-  width: 102px;
+  width: 56px;
+  height: 56px;
   clip-path: circle();
 }
