@@ -17,6 +17,7 @@ import UpdateProfile from "./component/user/UpdateProfile";
 import UpdatePassword from "./component/user/UpdatePassword";
 import ForgotPassword from "./component/user/ForgotPassword";
 import ResetPassword from "./component/user/ResetPassword";
+import Cart from "./component/cart/Cart";
 
 function App() {
 
@@ -43,12 +44,12 @@ function App() {
         <Route exact="true" path="/products" element={<Products/>} />
         <Route path="/products/:keyword" element={<Products/>} />
         <Route exact="true" path="/login" element={<LoginSignUp/>} />
-        {/* <Route exact="true" path="/password/forgot" element={<Home/>} /> */}
         <Route exact="true" path="/account" element ={<Profile/>} />
         <Route exact="true" path="/me/update" element ={<UpdateProfile/>} />
         <Route exact="true" path="/password/update" element ={<UpdatePassword/>} />
         <Route exact="true" path="/password/forgot" element ={<ForgotPassword/>} />
         <Route exact="true" path="/password/reset/:token" element ={<ResetPassword/>} />
+        <Route exact="true" path="/cart" element ={<Cart/>} />
       </Routes>
 
       <Footer/>

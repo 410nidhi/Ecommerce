@@ -1,7 +1,8 @@
 .Search {
   display: flex;
   margin: 5px;
-  position: absolute;
+  position: fixed;
   right: 10px;
   top: 10px;
+  z-index: 2;
 }

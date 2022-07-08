@@ -1,0 +1,11 @@
+.cartIconBox {
+  position: fixed;
+  right: 1.5vmax;
+  top: 4vmax;
+  padding: 10.5px;
+  width: 45px;
+  height: 45px;
+  clip-path: circle();
+  background-color: black;
+  z-index: 2;
+}

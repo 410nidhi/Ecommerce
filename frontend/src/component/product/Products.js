@@ -11,6 +11,7 @@ import { Typography } from '@mui/material'
 import {useAlert} from 'react-alert'
 import MetaData from '../layout/MetaData'
 import Search from '../layout/search/Search'
+import CartIcon from '../layout/cartIcon/CartIcon'
 
 const categories=[
     "Laptop", "Footwear", "Bottom", "Tops", "Attire", "Camera", "SmartPhones"
@@ -51,6 +52,7 @@ const Products = () => {
             <Fragment>
                 <MetaData title="Products -- ECOMMERCE"/>
                 <Search/>
+                <CartIcon/>
                 <h2 className='productsHeading'>Products</h2>
                 <div className="products">
                     {products && products.map((product)=>(<ProductCard key={product._id} product={product}/>))}

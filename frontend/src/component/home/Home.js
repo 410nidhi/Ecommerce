@@ -9,6 +9,7 @@ import Loader from '../layout/loader/Loader'
 import {useAlert} from "react-alert"
 import Login from '../login/Login'
 import Search from '../layout/search/Search'
+import CartIcon from '../layout/cartIcon/CartIcon'
 
 const Home = () => {
   const alert = useAlert()
@@ -33,6 +34,7 @@ const Home = () => {
       <Fragment>
       <MetaData title="ECOMMERCE" />
       <Search/>
+      <CartIcon/>
         <div className= "banner">
           <Login/>
             <p>Welcome to ECOMMERCE</p>
