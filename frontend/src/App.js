@@ -24,6 +24,7 @@ import axios from "axios";
 import Payment from "./component/cart/Payment";
 import {Elements} from "@stripe/react-stripe-js"
 import {loadStripe} from "@stripe/stripe-js"
+import OrderSuccess from "./component/cart/OrderSuccess";
 
 function App() {
 
@@ -68,6 +69,7 @@ function App() {
         <Route exact="true" path="/cart" element ={<Cart/>} />
         <Route exact="true" path="/login/shipping" element ={<Shipping/>} />
         <Route exact="true" path="/order/confirm" element ={<ConfirmOrder/>} />
+        <Route exact="true" path="/success" element ={<OrderSuccess/>} />
         
       </Routes>
 
