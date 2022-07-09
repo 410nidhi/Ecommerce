@@ -5,7 +5,8 @@ import "./Cart.css"
 import CartItemCard from './CartItemCard'
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import { Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import MetaData from '../layout/MetaData'
 
 const Cart = () => {
 
@@ -32,8 +33,14 @@ const Cart = () => {
         dispatch(removeItemsFromCart(id))
     }
 
+    const navigate = useNavigate()
+    const checkOutHandler = () => {
+        navigate("/login?redirect=shipping")
+    }
+
   return (
     <>
+    <MetaData title="Cart Details"/>
     {cartItems.length === 0 ? (
         <div className='emptyCart'>
             <RemoveShoppingCartIcon/>
@@ -75,7 +82,7 @@ const Cart = () => {
                 </div>
                 <div></div>
                 <div className="checkOutBtn">
-                    <button>Check Out</button>
+                    <button onClick={checkOutHandler}>Check Out</button>
                 </div>
             </div>
         </div>

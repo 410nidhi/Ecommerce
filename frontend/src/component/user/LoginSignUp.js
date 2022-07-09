@@ -1,7 +1,7 @@
 import React, {useRef, useState, useEffect} from 'react'
 import './LoginSignUp.css'
 import Loader from '../layout/loader/Loader'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import FaceIcon from '@mui/icons-material/Face';
@@ -9,7 +9,7 @@ import {useSelector, useDispatch} from "react-redux"
 import { login, clearErrors, register } from '../../actions/userAction';
 import {useAlert} from "react-alert"
 
-const LoginSignUp = (props) => {
+const LoginSignUp = () => {
 
     const dispatch = useDispatch()
     const alert = useAlert()
@@ -66,7 +66,12 @@ const LoginSignUp = (props) => {
         }
     }
 
+    const location = useLocation();
+    console.log("location ", location);
+    const redirect = location.search ? location.search.split("=")[1] : "/account";
+
     const navigate = useNavigate()
+    
 
     useEffect(()=>{
         if(error){
@@ -75,9 +80,9 @@ const LoginSignUp = (props) => {
         }
 
         if(isAuthenticated){
-            navigate("/account")
+            navigate(redirect)
         }
-    },[dispatch, alert, error, navigate, isAuthenticated])
+    },[dispatch, alert, error, navigate, isAuthenticated, redirect])
 
     const switchTabs = (e, tab)=>{
         if(tab === "login"){
@@ -98,7 +103,7 @@ const LoginSignUp = (props) => {
 
   return (
     <>
-    {loading ? <Loader/> :(
+    {loading === undefined || loading ? <Loader/> :(
         <>
         <div className='LoginSignUpContainer'>
             <div className='LoginSignUpBox'>
