@@ -10,9 +10,9 @@ input::-webkit-inner-spin-button {
 }
 
 .greenColor {
-  color: rgb(0, 169, 0);
+  color: rgb(0, 169, 0) !important;
 }
 
 .redColor {
-  color: red;
+  color: red !important;
 }
