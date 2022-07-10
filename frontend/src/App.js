@@ -29,6 +29,7 @@ import MyOrders from "./component/order/MyOrders";
 import OrderDetails from "./component/order/OrderDetails";
 import Dashboard from "./component/admin/Dashboard";
 import ProductList from "./component/admin/ProductList";
+import NewProduct from "./component/admin/NewProduct";
 
 function App() {
 
@@ -79,6 +80,7 @@ function App() {
         
         <Route exact="true" path="/admin/dashboard" element ={<Dashboard/>} />
         <Route exact="true" path="/admin/products" element ={<ProductList/>} />
+        <Route exact="true" path="/admin/product" element ={<NewProduct/>} />
       </Routes>
 
       {stripeApiKey && (
