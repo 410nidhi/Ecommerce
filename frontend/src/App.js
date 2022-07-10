@@ -27,6 +27,8 @@ import {loadStripe} from "@stripe/stripe-js"
 import OrderSuccess from "./component/cart/OrderSuccess";
 import MyOrders from "./component/order/MyOrders";
 import OrderDetails from "./component/order/OrderDetails";
+import Dashboard from "./component/admin/Dashboard";
+import ProductList from "./component/admin/ProductList";
 
 function App() {
 
@@ -75,6 +77,8 @@ function App() {
         <Route exact="true" path="/orders" element ={<MyOrders/>} />
         <Route exact="true" path="/order/:id" element ={<OrderDetails/>} />
         
+        <Route exact="true" path="/admin/dashboard" element ={<Dashboard/>} />
+        <Route exact="true" path="/admin/products" element ={<ProductList/>} />
       </Routes>
 
       {stripeApiKey && (
