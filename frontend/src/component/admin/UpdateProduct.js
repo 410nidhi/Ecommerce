@@ -1,8 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import Loader from '../layout/loader/Loader'
-import "./NewProduct.css"
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import DescriptionIcon from '@mui/icons-material/Description';
 import StorageIcon from '@mui/icons-material/Storage';
@@ -12,10 +11,10 @@ import MetaData from '../layout/MetaData'
 import Sidebar from './Sidebar'
 import { Button } from '@material-ui/core'
 import { useAlert } from 'react-alert'
-import { clearErrors, createProduct } from '../../actions/productAction'
-import { NEW_PRODUCT_RESET } from '../../constants/productConstants'
+import { clearErrors, getProductDetails, updateProduct } from '../../actions/productAction'
+import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 
-const NewProduct = () => {
+const UpdateProduct = () => {
 
     const {user, loading:userLoading} = useSelector(state=> state.user)
 
@@ -23,7 +22,8 @@ const NewProduct = () => {
     const alert = useAlert()
     const navigate = useNavigate()
 
-    const {loading, error, success} = useSelector(state=> state.newProduct)
+    const {error, product} = useSelector(state=> state.productDetails)
+    const {loading, error:updateError, isUpdated} = useSelector(state=> state.product)
 
     const [name, setName] = useState("")
     const [price, setPrice] = useState(0)
@@ -31,26 +31,45 @@ const NewProduct = () => {
     const [category, setCategory] = useState("")
     const [stock, setStock] = useState(0)
     const [images, setImages] = useState([])
+    const [oldImages, setOldImages] = useState([])
     const [imagesPreview, setImagesPreview] = useState([])
 
     const categories=[
         "Laptop", "Footwear", "Bottom", "Tops", "Attire", "Camera", "SmartPhones"
     ]
+    
+    const {id} = useParams();
 
     useEffect(()=>{
+        if(product && product._id !== id){
+            dispatch(getProductDetails(id))
+        } else{
+            setName(product.name)
+            setDescription(product.description)
+            setPrice(product.price)
+            setCategory(product.category)
+            setStock(product.stock)
+            setOldImages(product.images)
+        }
+
         if(error){
             alert.error(error)
             dispatch(clearErrors())
         }
 
-        if(success){
-            alert.success("Product Created Successfully")
-            navigate("/admin/dashboard")
-            dispatch({type:NEW_PRODUCT_RESET})
+        if(updateError){
+            alert.error(updateError)
+            dispatch(clearErrors())
         }
-    },[dispatch, alert, error, success, navigate])
 
-    const createProductSubmitHandler = (e) => {
+        if(isUpdated){
+            alert.success("Product Updated Successfully")
+            navigate("/admin/products")
+            dispatch({type:UPDATE_PRODUCT_RESET})
+        }
+    },[dispatch, alert, error, isUpdated, navigate, id, product, updateError])
+
+    const updateProductSubmitHandler = (e) => {
         e.preventDefault();
 
         const myForm = new FormData()
@@ -65,14 +84,15 @@ const NewProduct = () => {
             myForm.append("images",image)
         })
 
-        dispatch(createProduct(myForm))
+        dispatch(updateProduct(id,myForm))
     }
 
-    const createProductImagesChange = (e) => {
+    const updateProductImagesChange = (e) => {
         const files = Array.from(e.target.files)
 
         setImages([])
         setImagesPreview([])
+        setOldImages([])
 
         files.forEach((file)=>{
             const reader = new FileReader()
@@ -94,7 +114,7 @@ const NewProduct = () => {
             <Fragment>
             {user.role!=="admin"? (<Navigate to="/login"/>) : (
                 <Fragment>
-                    <MetaData title={`Create Product`}/>
+                    <MetaData title={`Update Product`}/>
                     <div className='dashboard'>
                         <Sidebar/>
                         <div className='newProductContainer'>
@@ -102,9 +122,9 @@ const NewProduct = () => {
                             <form
                             className='createProductForm'
                             encType='mutipart/form-data'
-                            onSubmit={createProductSubmitHandler}
+                            onSubmit={updateProductSubmitHandler}
                             >
-                                <h1>Create Product</h1>
+                                <h1>Update Product</h1>
                                 <div>
                                     <SpellcheckIcon/>
                                     <input
@@ -121,6 +141,7 @@ const NewProduct = () => {
                                     type="number"
                                     placeholder='Price'
                                     required
+                                    value={price}
                                     onChange={(e)=>setPrice(e.target.value)}
                                     />
                                 </div>
@@ -136,7 +157,7 @@ const NewProduct = () => {
                                 </div>
                                 <div>
                                     <AccountTreeIcon/>
-                                    <select onChange={(e)=>setCategory(e.target.value)}>
+                                    <select value={category} onChange={(e)=>setCategory(e.target.value)}>
                                         <option value="">Choose Category</option>
                                         {categories.map((cate)=>(
                                             <option key={cate} value={cate}>
@@ -151,6 +172,7 @@ const NewProduct = () => {
                                     type="number"
                                     placeholder="Stock"
                                     required
+                                    value={stock}
                                     onChange={(e)=>setStock(e.target.value)}
                                     />
                                 </div>
@@ -160,8 +182,13 @@ const NewProduct = () => {
                                     name="avatar"
                                     accept="image/"
                                     multiple
-                                    onChange={createProductImagesChange}
+                                    onChange={updateProductImagesChange}
                                     />
+                                </div>
+                                <div id='createProductFormImage'>
+                                    {oldImages && oldImages.map((image, index)=>(
+                                        <img key={index} src={image.url} alt="Old Product Preview"/>
+                                    ))}
                                 </div>
                                 <div id='createProductFormImage'>
                                     {imagesPreview.map((image, index)=>(
@@ -173,7 +200,7 @@ const NewProduct = () => {
                                 type="submit"
                                 disabled={loading ? true : false}
                                 >
-                                    Create
+                                    Update
                                 </Button>
         
                             </form>
@@ -187,4 +214,4 @@ const NewProduct = () => {
   )
 }
 
-export default NewProduct
+export default UpdateProduct

@@ -87,7 +87,39 @@ exports.updateProduct = catchAsyncErrors (async(req, res, next)=>{
         return next(new ErrorHandler("Product Not Found", 404))
     }
 
-    product = await Product.findOneAndUpdate(req.params.id, req.body, {
+    // Images
+    let images=[]
+
+    if(typeof req.body.images === "string"){
+        images.push(req.body.images)
+    } else {
+        images = req.body.images
+    }
+
+    if(images !== undefined){
+        // Deleting Images from Cloudinary
+        for(let i=0; i<product.images.length; i++){
+            await cloudinary.v2.uploader.destroy(product.images[i].public_id)
+        }
+
+        // Uploading New Images
+        const imagesLink=[]
+
+        for(let i =0; i < images.length; i++){
+            const result = await cloudinary.v2.uploader.upload(images[i], {
+                folder:"products"
+            })
+    
+            imagesLink.push({
+                public_id: result.public_id,
+                url: result.secure_url
+            })
+        }
+    
+        req.body.images = imagesLink
+    }
+
+    product = await Product.findByIdAndUpdate(req.params.id, req.body, {
         new: true, 
         runValidators:true,
         useFindAndModify: false
@@ -107,6 +139,11 @@ exports.deleteProduct = catchAsyncErrors (async(req, res, next)=>{
 
     if (!product){
         return next(new ErrorHandler("Product Not Found", 404))
+    }
+
+    // Deleting Images from Cloudinary
+    for(let i=0; i<product.images.length; i++){
+        await cloudinary.v2.uploader.destroy(product.images[i].public_id)
     }
 
     await product.remove();
