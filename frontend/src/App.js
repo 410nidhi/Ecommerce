@@ -36,6 +36,7 @@ import ProcessOrder from "./component/admin/ProcessOrder";
 import UserList from "./component/admin/UserList";
 import UpdateUser from "./component/admin/UpdateUser";
 import ProductReviews from "./component/admin/ProductReviews";
+import NotFound from "./component/layout/notFoundPage/NotFound";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -64,6 +65,14 @@ function App() {
       <Header />
 
       {isAuthenticated && <UserOptions user={user} />}
+
+      {stripeApiKey && (
+        <Elements stripe={loadStripe(stripeApiKey)}>
+          <Routes>
+            <Route exact="true" path="/process/payment" element={<Payment />} />
+          </Routes>
+        </Elements>
+      )}
 
       <Routes>
         <Route exact="true" path="/" element={<Home />} />
@@ -116,15 +125,16 @@ function App() {
           path="/admin/reviews"
           element={<ProductReviews />}
         />
-      </Routes>
 
-      {stripeApiKey && (
-        <Elements stripe={loadStripe(stripeApiKey)}>
-          <Routes>
-            <Route exact="true" path="/process/payment" element={<Payment />} />
-          </Routes>
-        </Elements>
-      )}
+        <Route
+          path="*"
+          element={
+            window.location.pathname === "/process/payment" ? null : (
+              <NotFound />
+            )
+          }
+        />
+      </Routes>
 
       <Footer />
     </Router>

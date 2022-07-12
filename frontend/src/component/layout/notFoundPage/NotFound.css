@@ -1,0 +1,39 @@
+.notFound {
+  min-height: 800px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 150px;
+  background-color: rgb(247, 201, 192);
+}
+
+.notFound > svg {
+  color: tomato;
+  font-size: 100px;
+}
+
+.notFound > h1 {
+  font: 500 3rem "Roboto";
+}
+
+.notFound > a {
+  text-decoration: none;
+}
+
+.homeLink {
+  font-size: 1.5rem;
+  color: white;
+  background-color: rgb(39, 36, 36);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.5s;
+}
+
+.homeLink > p {
+  margin: 0;
+}
+
+.homeLink:hover {
+  transform: scale(1.1);
+}
