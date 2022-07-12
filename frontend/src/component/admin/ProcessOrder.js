@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   clearErrors,
   getOrderDetails,
@@ -20,7 +20,6 @@ const ProcessOrder = () => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { error: updateError, isUpdated } = useSelector((state) => state.order);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const alert = useAlert();
   const { id } = useParams();
