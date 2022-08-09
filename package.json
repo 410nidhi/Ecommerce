@@ -24,7 +24,13 @@
     "nodemailer": "^6.7.5",
     "nodemo": "^1.0.0",
     "nodemon": "^2.0.16",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "stripe": "^9.12.0",
     "validator": "^13.7.0"
+  },
+  "engines": {
+    "node": "16.x",
+    "npm": "8.5.5"
   }
 }
