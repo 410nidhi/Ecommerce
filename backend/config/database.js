@@ -2,10 +2,13 @@ const mongoose = require("mongoose");
 
 const connectDatabase = () => {
   mongoose
-    .connect("mongodb://localhost:27017/Ecommerce", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
+    .connect(
+      "mongodb+srv://newUser:newUser%4000@ecommerce.jwsqkr6.mongodb.net/Ecommerce?retryWrites=true&w=majority",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    )
     .then((data) => {
       console.log("Connected Database!");
     });
